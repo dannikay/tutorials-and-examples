@@ -20,6 +20,7 @@ export HUGGINGFACE_TOKEN_DIR="/huggingface"
 INFERENCE_SERVER="jetstream-maxtext"
 BUCKET_NAME=""
 MODEL_PATH=""
+MAXTEXT_ROOT=""
 
 print_usage() {
     echo "Usage: $0 [ -b BUCKET_NAME ] [ -s INFERENCE_SERVER ] [ -m MODEL_PATH ] [ -n MODEL_NAME ] [ -h HUGGINGFACE ] [ -q QUANTIZE_WEIGHTS ] [ -t QUANTIZE_TYPE ] [ -v VERSION ] [ -i INPUT_DIRECTORY ] [ -o OUTPUT_DIRECTORY ]"
@@ -35,6 +36,7 @@ print_usage() {
     echo "  -o, --output_directory: [string] The output directory."
     echo "  -u, --meta_url: [string] The url from Meta."
     echo "  -v, --version: [string] The version of repository."
+    echo " --maxtext_root: [string] The root directory where maxtext is installed."
 }
 
 print_inference_server_unknown() {
@@ -243,7 +245,7 @@ convert_maxtext_checkpoint() {
         echo -e "$(date '+%Y-%m-%d %H:%M:%S'): Concurrent_gb=${CONCURRENT_GB}"
 
         export JAX_PLATFORMS=cpu
-        cd /maxtext/
+        cd ${MAXTEXT_ROOT}/maxtext/
 
         echo -e "$(date '+%Y-%m-%d %H:%M:%S'): Beginning conversion of scanned checkpoint to ${OUTPUT_CKPT_DIR_SCANNED}/0/items"
 
@@ -430,6 +432,7 @@ while true; do
         -i | --input_directory) INPUT_DIRECTORY="$2"; shift 2 ;;
         -o | --output_directory) OUTPUT_DIRECTORY="$2"; shift 2 ;;
         -u | --meta_url) META_URL="$2"; shift 2 ;;
+        -e | --maxtext_root) MAXTEXT_ROOT="$2"; shift 2 ;;
         -x | --help) print_usage; exit 0 ;;
         --) shift; break ;;
         *) echo "Internal error!" exit 1 ;;
