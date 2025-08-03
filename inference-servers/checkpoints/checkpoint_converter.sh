@@ -36,7 +36,7 @@ print_usage() {
     echo "  -o, --output_directory: [string] The output directory."
     echo "  -u, --meta_url: [string] The url from Meta."
     echo "  -v, --version: [string] The version of repository."
-    echo " --maxtext_root: [string] The root directory where maxtext is installed."
+    echo "  -e, --maxtext_root: [string] The root directory where maxtext is installed."
 }
 
 print_inference_server_unknown() {
@@ -416,7 +416,7 @@ convert_pytorch_checkpoint() {
 
 CMD_ARGS=$(getopt -o "xb:s:m:n:h:t:q:v:i:o:u:" --long "bucket_name:,inference_server:,model_name:,
 model_path:,huggingface:,quantize_type:,quantize_weights:,version:,input_directory:,output_directory:,
-meta_url:,help," -- "$@")
+meta_url:,maxtext_root:,help," -- "$@")
 eval set -- "$CMD_ARGS"
 
 while true; do
