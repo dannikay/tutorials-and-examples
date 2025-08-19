@@ -23,10 +23,12 @@ RUN apt -y update && apt install -y --no-install-recommends \
     ca-certificates \
     git \
     python3.12 \
-    python3-pip \
     curl \
     gnupg
 
+RUN rm /usr/lib/python3.12/EXTERNALLY-MANAGED
+
+RUN cd /tmp && curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py
 RUN python3 -m pip install --upgrade pip
 
 RUN update-alternatives --install \
