@@ -22,7 +22,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt -y update && apt install -y --no-install-recommends \
     ca-certificates \
     git \
-    python3.10 \
+    python3.12 \
     python3-pip \
     curl \
     gnupg
