@@ -47,7 +47,7 @@ pip install huggingface_hub[cli] && \
 pip install google-jetstream && \
 pip install llama-stack && \
 pip install torch && \
-pip install grain-nightly==0.0.10
+pip install grain-nightly==0.2.12.dev20250818
 
 COPY checkpoint_converter.sh /usr/bin/
 RUN chmod +x /usr/bin/checkpoint_converter.sh
